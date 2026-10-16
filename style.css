@@ -3,6 +3,7 @@ html,body{
     background-color: #171717;
     color: var(--text-color);
     scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 html a, body a{
     color: var(--secondary-text);
@@ -10,6 +11,7 @@ html a, body a{
 }
 :root{
     --bg-color: #171717;
+    --shade: #292929a1;
     --text-color: #ffffff;
     --secondary-text: #ffffff91;
     --link: lightblue;
@@ -68,9 +70,9 @@ header .icon{
 }
 .story{
     flex: 0 0 80px;
-    height: 100px;
-    border: 2px solid var(--border);
-    border-radius: 40px;
+    height: 110px;
+    border: 3px solid var(--border);
+    border-radius: 50px;
     corner-shape: squircle;
     overflow: hidden;
     position: relative;
@@ -171,7 +173,7 @@ main{
     flex: 0 1 auto;
     border: 2.7px solid var(--border);
     width: fit-content;
-    max-width: 100%;
+    max-width: 99.5%;
     max-height: min(55vh, 420px);
     border-radius: 34px;
     corner-shape: squricle;
@@ -262,7 +264,9 @@ footer .left .buttons{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--bg-color);
+    background-color: var(--shade);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 footer a{
     color: var(--secondary-text);
