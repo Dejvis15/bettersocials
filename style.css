@@ -26,23 +26,32 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(23, 23, 23, 0.977);
+    background-color: rgba(23, 23, 23, 0.904);
     padding: 0 15px;
     z-index: 100;
     font-size: 1.2rem;
     transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 header.hidden{
     transform: translateY(-100%);
 }
 header .logo{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    color: var(--text-color);
+    color: white;
+}
+header .logo svg{
+    width: 40px;
+    height: 40px;
+}
+header .logo svg path{
+    fill: #fff;
 }
 header .icon{
     color: var(--secondary-text);
@@ -173,10 +182,10 @@ main{
     flex: 0 1 auto;
     border: 2.7px solid var(--border);
     width: fit-content;
-    max-width: 99.5%;
+    max-width: 100%;
     max-height: min(55vh, 420px);
     border-radius: 34px;
-    corner-shape: squricle;
+    corner-shape: squircle;
     overflow: hidden;
 }
 .post .image.portrait{
@@ -268,8 +277,23 @@ footer .left .buttons{
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 }
+footer .left .search-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--secondary-text);
+    font: inherit;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}
 footer a{
     color: var(--secondary-text);
+}
+footer .search-toggle[aria-expanded="true"] .buttons{
+    color: var(--text-color);
 }
 footer a.active{
     color: var(--text-color);
@@ -295,6 +319,59 @@ footer .right .profile img{
     object-fit: cover;
 }
 
+.search-panel{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    width: min(320px, calc(100vw - 24px));
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: rgba(23, 23, 23, 0.95);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.search-panel[hidden]{
+    display: none;
+}
+.search-input-row{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.search-panel input{
+    width: 100%;
+    min-width: 0;
+    flex: 1;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background: var(--shade);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+.search-panel input:focus{
+    border-color: var(--secondary-text);
+}
+.search-close{
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--shade);
+    color: var(--secondary-text);
+    font-size: 1rem;
+    cursor: pointer;
+}
+.search-close:hover,
+.search-close:focus-visible{
+    color: var(--text-color);
+}
+
 @media (min-width: 768px){
     body{
         padding-left: 88px;
@@ -302,7 +379,6 @@ footer .right .profile img{
     header .icon{
         padding: 10px;
     }
-
     .story-container,
     main{
         width: min(100%, 620px);
@@ -329,6 +405,9 @@ footer .right .profile img{
         width: auto;
         flex: 0 0 36px;
         margin-left: auto;
+    }
+    .post .image{
+        border-radius: 34px;
     }
 
     header{
@@ -382,6 +461,7 @@ footer .right .profile img{
     }
 
     footer .left a,
+    footer .left .search-toggle,
     footer .right a{
         position: relative;
         display: flex;
@@ -389,6 +469,9 @@ footer .right .profile img{
         width: 100%;
         min-height: 54px;
         padding-left: 7px;
+    }
+    footer .left .search-toggle{
+        justify-content: flex-start;
     }
 
     footer .left .buttons{
